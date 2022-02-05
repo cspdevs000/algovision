@@ -1,5 +1,5 @@
 import React from 'react';
-// import '.AlgoVision.css';
+import './AlgoVision.css';
 
 class AlgoVision extends React.Component {
     constructor(props) {
@@ -16,8 +16,8 @@ class AlgoVision extends React.Component {
     
     resetArray() {
         const arr = [];
-        for (let i=0; i<100; i++) {
-            arr.push(randomIntFromInterval(3, 999));
+        for (let i = 0; i < 250; i++) {
+            arr.push(randomIntFromInterval(3, 666));
         }
         this.setState({arr});
     }
@@ -26,13 +26,19 @@ class AlgoVision extends React.Component {
         const {arr} = this.state;
         
         return (
-            <>
-                {arr.map((value, idx) => (
-                    <div className='arr-bar' key={idx}>
-                        {value}
-                    </div>
-                ))}
-            </>
+            <div>
+                <div className='arr-container'>
+                    {arr.map((value, idx) => (
+                        <div className='arr-bar' 
+                        key={idx}
+                        style={{height: `${value}px`}}>
+                        </div>
+                    ))}
+                </div>
+                <div>
+                    <button onClick={() => this.resetArray()}>Generate New Values</button>
+                </div>
+            </div>
         );
     }
 }
