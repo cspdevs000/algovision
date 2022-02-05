@@ -1,50 +1,100 @@
 import React from 'react';
+import {getMergeSortAnimations} from '../sortingAlgorithms/sortingAlgorithms.js';
 import './AlgoVision.css';
 
-class AlgoVision extends React.Component {
-    constructor(props) {
-        super(props);
+const ANIMATION_SPEED_MS = 5;
+const NUMBER_OF_ARRAY_BARS = 250;
+const PRIMARY_COLOR = 'green';
+const SECONDARY_COLOR = 'red';
 
-        this.state = {
-            arr: [],
-        };
-    }
+export default class SortingVisualizer extends React.Component {
+  constructor(props) {
+    super(props);
 
-    componentDidMount() {
-        this.resetArray();
-    }
-    
-    resetArray() {
-        const arr = [];
-        for (let i = 0; i < 250; i++) {
-            arr.push(randomIntFromInterval(3, 666));
-        }
-        this.setState({arr});
-    }
+    this.state = {
+      array: [],
+    };
+  }
 
-    render() {
-        const {arr} = this.state;
-        
-        return (
-            <div>
-                <div className='arr-container'>
-                    {arr.map((value, idx) => (
-                        <div className='arr-bar' 
-                        key={idx}
-                        style={{height: `${value}px`}}>
-                        </div>
-                    ))}
-                </div>
-                <div>
-                    <button onClick={() => this.resetArray()}>Generate New Values</button>
-                </div>
-            </div>
-        );
+  componentDidMount() {
+    this.resetArray();
+  }
+
+  resetArray() {
+    const array = [];
+    for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
+      array.push(randomIntFromInterval(3, 666));
     }
+    this.setState({array});
+  }
+
+  mergeSort() {
+    const animations = getMergeSortAnimations(this.state.array);
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName('array-bar');
+      const isColorChange = i % 3 !== 2;
+      if (isColorChange) {
+        const [barOneIdx, barTwoIdx] = animations[i];
+        const barOneStyle = arrayBars[barOneIdx].style;
+        const barTwoStyle = arrayBars[barTwoIdx].style;
+        const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+          barTwoStyle.backgroundColor = color;
+        }, i * ANIMATION_SPEED_MS);
+      } else {
+        setTimeout(() => {
+          const [barOneIdx, newHeight] = animations[i];
+          const barOneStyle = arrayBars[barOneIdx].style;
+          barOneStyle.height = `${newHeight}px`;
+        }, i * ANIMATION_SPEED_MS);
+      }
+    }
+  }
+
+  quickSort() {
+  }
+
+  heapSort() {
+  }
+
+  bubbleSort() {
+  }
+
+  render() {
+    const {array} = this.state;
+
+    return (
+      <div className="array-container">
+        {array.map((value, idx) => (
+          <div
+            className="array-bar"
+            key={idx}
+            style={{
+              backgroundColor: PRIMARY_COLOR,
+              height: `${value}px`,
+            }}></div>
+        ))}
+        <button onClick={() => this.resetArray()}>Generate New Array</button>
+        <button onClick={() => this.mergeSort()}>Merge Sort</button>
+        <button onClick={() => this.quickSort()}>Quick Sort</button>
+        <button onClick={() => this.heapSort()}>Heap Sort</button>
+        <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+      </div>
+    );
+  }
 }
 
-function randomIntFromInterval(min,max) {
-    return Math.floor(Math.random()*(max-min+1)+min);
+function randomIntFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
-    
-export default AlgoVision
+
+function arraysAreEqual(arrayOne, arrayTwo) {
+  if (arrayOne.length !== arrayTwo.length) return false;
+  for (let i = 0; i < arrayOne.length; i++) {
+    if (arrayOne[i] !== arrayTwo[i]) {
+      return false;
+    }
+  }
+  return true;
+}

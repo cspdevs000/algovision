@@ -1,4 +1,4 @@
-.arr-container {
+/* .arr-container {
     display: inline-flex;
     flex-direction: row;
 }
@@ -9,3 +9,21 @@
     display: inline-block;
     margin: 0 1px;
 }
+
+.button-container {
+    padding: 1vh;
+    display: flex;
+    justify-content: space-around;
+} */
+
+.array-container {
+    position: absolute;
+    left: 100px;
+    /* top: 100px; */
+  }
+  
+  .array-bar {
+    width: 2px;
+    display: inline-block;
+    margin: 0 1px;
+  }
