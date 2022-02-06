@@ -1,7 +1,9 @@
 .array-container {
     display: flex;
     width: 90vw;
+    height: 93vh;
     justify-content: center;
+    align-items: flex-end;
     padding-left: 5vw;
 }
 
@@ -12,18 +14,8 @@
 }
 
 .button-container {
+    height: 5vh;
     padding: 1vh;
     display: flex;
     justify-content: space-around;
 }
-
-/* .array-container {
-    position: absolute;
-    left: 100px;
-  }
-  
-  .array-bar {
-    width: 2px;
-    display: inline-block;
-    margin: 0 1px;
-  } */
