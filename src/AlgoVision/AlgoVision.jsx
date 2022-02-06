@@ -3,7 +3,7 @@ import {getMergeSortAnimations} from '../sortingAlgorithms/sortingAlgorithms.js'
 import './AlgoVision.css';
 
 const ANIMATION_SPEED_MS = 5;
-const NUMBER_OF_ARRAY_BARS = 250;
+const NUMBER_OF_ARRAY_BARS = 150;
 const PRIMARY_COLOR = 'green';
 const SECONDARY_COLOR = 'red';
 
@@ -65,21 +65,25 @@ export default class SortingVisualizer extends React.Component {
     const {array} = this.state;
 
     return (
-      <div className="array-container">
-        {array.map((value, idx) => (
-          <div
+      <div className=''>
+        <div className='button-container'>
+          <button onClick={() => this.resetArray()}>Generate New Array</button>
+          <button onClick={() => this.mergeSort()}>Merge Sort</button>
+          {/* <button onClick={() => this.quickSort()}>Quick Sort</button>
+          <button onClick={() => this.heapSort()}>Heap Sort</button>
+          <button onClick={() => this.bubbleSort()}>Bubble Sort</button> */}
+        </div>
+        <div className="array-container">
+          {array.map((value, idx) => (
+            <div
             className="array-bar"
             key={idx}
             style={{
               backgroundColor: PRIMARY_COLOR,
               height: `${value}px`,
             }}></div>
-        ))}
-        <button onClick={() => this.resetArray()}>Generate New Array</button>
-        <button onClick={() => this.mergeSort()}>Merge Sort</button>
-        <button onClick={() => this.quickSort()}>Quick Sort</button>
-        <button onClick={() => this.heapSort()}>Heap Sort</button>
-        <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+            ))}
+        </div>
       </div>
     );
   }

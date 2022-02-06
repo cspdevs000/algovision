@@ -1,11 +1,12 @@
-/* .arr-container {
-    display: inline-flex;
-    flex-direction: row;
+.array-container {
+    display: flex;
+    width: 90vw;
+    justify-content: center;
+    padding-left: 5vw;
 }
 
-.arr-bar {
-    width: 2px;
-    background-color: rgba(100, 33, 44, 0.904);
+.array-bar {
+    width: 5px;
     display: inline-block;
     margin: 0 1px;
 }
@@ -14,16 +15,15 @@
     padding: 1vh;
     display: flex;
     justify-content: space-around;
-} */
+}
 
-.array-container {
+/* .array-container {
     position: absolute;
     left: 100px;
-    /* top: 100px; */
   }
   
   .array-bar {
     width: 2px;
     display: inline-block;
     margin: 0 1px;
-  }
+  } */
