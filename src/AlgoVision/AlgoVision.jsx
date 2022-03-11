@@ -67,6 +67,21 @@ export default class SortingVisualizer extends React.Component {
     return (
       <div className=''>
         <div className='button-container'>
+
+            {/* <input 
+              type='text'
+              className=''
+              title='size'
+              name='size'
+              value={this.state.bars}
+              onChange={this.handleBars.bind(this)}
+            >
+              Size of the array
+            </input>
+            <button type='submit'>
+              Submit
+            </button> */}
+
           <button onClick={() => this.resetArray()}>Generate New Values</button>
           <button onClick={() => this.mergeSort()}>Merge Sort</button>
           {/* <button onClick={() => this.quickSort()}>Quick Sort</button>
